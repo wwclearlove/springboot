@@ -1,0 +1,48 @@
+server:
+  port: 40001
+rocketmq:
+  consumer:
+    consumeMessageBatchMaxSize: 1000
+    consumeThreadMax: 150
+    consumeThreadMin: 50
+    groupName: glasssix-test
+    isOnOff: 'on'
+    namesrvAddr: 127.0.0.1:9876
+    topics: glasssix-rocket~*
+  name-server: 127.0.0.1:9876
+  producer:
+    retryTimesWhenSendFailed: 3
+spring:
+  application:
+    name: glass-mq-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #nacos服务地址
+        locator:
+          enabled: true
+  rabbitmq:
+    host: 10.168.1.17
+    port: 5672
+    username: admin
+    password: 123456
+#    listener:
+#      simple:
+#      #开启手动确认
+#        acknowledge-mode: manual
+dubbo:
+  consumer:
+    check: false
+    retries: 0
+    timeout: 10000
+  protocol:
+    name: dubbo
+    port: -1
+  provider:
+    retries: 0
+    timeout: 10000
+  registry:
+    address: nacos://localhost:8848
+    check: false
+  scan:
+    base-packages: com.glasssix.dubbo

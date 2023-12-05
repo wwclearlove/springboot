@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket</title>
+    <script src="https://cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"></script>
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<fieldset>
+    <legend>User01</legend>
+    <button onclick="online('bart')">上线</button>
+    用户id：<input type="text" id="user-bart"/>
+    host：<input type="text" id="host-bart" value="localhost"/>
+    port：<input type="text" id="port-bart" value="8083"/>
+    <div>发送消息:</div>
+    <input type="text" id="msgContent-bart"/>
+    <input type="button" value="点我发送" onclick="chat('bart')"/>
+    <div>接受消息：</div>
+    <div id="receiveMsg-bart" style="background-color: gainsboro;"></div>
+</fieldset>
+<script>
+    $(function(){
+        //请求参数对象
+        var params = {};
+        params.pageIndex = 1
+        params.pageSize = 10;
+        //执行Ajax请求
+        $.ajax({
+            type: "POST",
+            url: "http://10.168.1.11:31082/page",
+            async: true,
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(params),
+            success: function (result) {
+                console.log("=="+result)
+            }
+        });
+    });
+    // var map = {};
+    // function online(name) {
+    //     var host = $("#host-"+name).val();
+    //     var port = $("#port-"+name).val();
+    //     var userId = $("#user-"+name).val();
+    //     console.log(userId+"=id")
+    //     var chat = new CHAT(name, "ws://"+host+":"+port+"/websocket/"+userId);
+    //     chat.init();
+    //     map[name] = chat
+    // }
+    // function chat(name) {
+    //     return true;
+    // }
+    // function CHAT(name, url) {
+    //     this.name = name;
+    //     this.socket = null,
+    //         this.init = function() {
+    //             if ('WebSocket' in window) {
+    //                 console.log("WebSocket -> "+ url);
+    //                 //this.socket = new WebSocket("ws://localhost:8088/ws/"+ this.name);
+    //                 this.socket = new WebSocket(url);
+    //             } else {
+    //                 console.log("your broswer not support websocket!");
+    //                 alert("your broswer not support websocket!")
+    //                 return;
+    //             }
+    //             if(this.socket === null) {
+    //                 return
+    //             }
+    //             this.socket.onopen = function() {
+    //                 console.log("连接建立成功...");
+    //             },
+    //                 this.socket.onclose = function() {
+    //                     console.log("连接关闭...");
+    //                 },
+    //                 this.socket.onerror = function() {
+    //                     console.log("发生错误...");
+    //                 },
+    //                 this.socket.onmessage = function(e) {
+    //                     var id = "receiveMsg-"+ name;
+    //                     var res = JSON.parse(e.data);
+    //                     console.log(name , res);
+    //                     // 业务逻辑
+    //                 }
+    //         },
+    //         this.chat = function() {
+    //             var id = "msgContent-"+ name;
+    //             var value = document.getElementById(id).value;
+    //             console.log("发送消息",  id, value)
+    //             var msg = {
+    //                 "type": 1, // 1 就是发给所有人
+    //                 "msg": value
+    //             }
+    //             this.socket.send(JSON.stringify(msg));
+    //         }
+    // };
+</script>
+</body>
+</html>

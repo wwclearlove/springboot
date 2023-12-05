@@ -1,0 +1,26 @@
+server:
+  port: 9900
+  tomcat:
+    acceptCount: 500
+spring:
+  application:
+    name: glass-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #nacos服务地址
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+#      httpclient:
+#        connect-timeout: 2000
+#        response-timeout: 100000
+#      default-filters:
+#        - args:
+#            methods:
+#              - GET
+#              - POST
+#          name: Retry
+

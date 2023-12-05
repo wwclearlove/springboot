@@ -1,0 +1,40 @@
+server:
+  port: 8888
+spring:
+  rabbitmq:
+    host: 10.168.1.17
+    port: 5672
+    username: admin
+    password: 123456
+    # 消息确认回调
+    publisher-confirm-type: correlated
+    # 消息失败回调
+    publisher-returns: true
+  application:
+    name: glass-mq
+rocketmq:
+  producer:
+    groupName: glasssix-test
+    isOnOff: 'on'
+    maxMessageSize: 409600000
+    namesrvAddr: localhost:9876
+    retryTimesWhenSendFailed: 3
+    sendMsgTimeOut: 4000
+dubbo:
+  consumer:
+    check: false
+    retries: 0
+    timeout: 10000
+  protocol:
+    name: dubbo
+    port: -1
+  provider:
+    retries: 0
+    timeout: 10000
+  registry:
+    address: nacos://localhost:8848
+    check: false
+  scan:
+    base-packages: com.glasssix.dubbo
+# seata 配置
+start-rabbitmq: 1

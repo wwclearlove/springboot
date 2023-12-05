@@ -1,0 +1,39 @@
+server:
+  port: 8083
+  tomcat:
+    connection-timeout: 20000
+    acceptCount: 500
+    threads:
+      max: 400
+
+spring:
+  application:
+    name: glass-websocket
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 1000MB
+      # 一次传多个文件的总大小
+      max-request-size: 1000MB
+dubbo:
+  consumer:
+    check: false
+    retries: 0
+    timeout: 10000
+  protocol:
+    name: dubbo
+    port: -1
+  provider:
+    retries: 0
+    timeout: 10000
+  registry:
+    address: nacos://localhost:8848
+    check: false
+  scan:
+    base-packages: com.glasssix.dubbo

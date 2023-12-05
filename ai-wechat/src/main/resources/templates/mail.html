@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.theymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>邮箱绑定</title>
+</head>
+<body>
+<p>尊敬的<span th:text="${name}"></span>用户，</p>
+<p>您的账号正在换绑邮箱，要完成此操作须验证您的邮箱地址。</p>
+<p>请点击以下链接（有效期5分钟）进行换绑操作：</p>
+<a href='th:text="${url}"'><span th:text="${url}"></span></a>
+<p>如果以上链接无法点击，请将上面的地址复制到您的浏览器地址栏进入。</p>
+<p>如果您没有换绑邮箱的操作，请忽略这封邮件。</p>
+<p>感谢您的支持！</p>
+</body>
+</html>
